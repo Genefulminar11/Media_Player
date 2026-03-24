@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for character encoding and responsive design -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Player</title>
+  
+  <!-- Bootstrap CSS - Framework for responsive design -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main container -->
+  <div class="container-fluid h-100">
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="col-12 p-2 p-md-3 p-lg-3 d-flex flex-column">
+      <!-- White container that holds all content sections -->
+      <section class="bg-white rounded-4 shadow-lg p-3 p-md-4 p-lg-5 d-flex flex-column justify-content-center align-items-center text-center">
+        
+        <!-- ==================== MEDIA PLAYER SECTION ==================== -->
+        <div id="others" class="section-content w-100">
+          <div class="container-fluid p-4 p-md-5">
+            <div class="row mb-4">
+              <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-primary mb-2"><i class="fas fa-play-circle me-2"></i>Media Player</h2>
+                <p class="text-muted">Play music and videos from my media collection.</p>
+              </div>
+            </div>
+
+            <!-- Media Player -->
+            <div class="row g-4">
+              <!-- Player Area -->
+              <div class="col-12 col-lg-8">
+                <div class="card border-0 shadow-sm media-player-card">
+                  <!-- Video Player (hidden when audio) -->
+                  <div id="videoContainer" class="media-video-container d-none">
+                    <video id="videoPlayer" class="w-100 rounded-top" controls></video>
+                  </div>
+
+                  <!-- Audio Player with Visualizer -->
+                  <div id="audioContainer" class="media-audio-container d-none">
+                    <div class="media-audio-artwork">
+                      <i class="fas fa-music"></i>
+                    </div>
+                    <canvas id="audioVisualizer" class="media-visualizer"></canvas>
+                  </div>
+
+                  <!-- Now Playing Info & Controls -->
+                  <div class="p-3 p-md-4">
+                    <div id="nowPlayingInfo" class="text-center mb-3">
+                      <h5 class="fw-bold text-primary mb-1" id="nowPlayingTitle">No media selected</h5>
+                      <p class="text-muted small mb-0" id="nowPlayingType">Select a track from the playlist</p>
+                    </div>
+
+                    <!-- Audio controls (for audio files) -->
+                    <div id="audioControls" class="d-none">
+                      <!-- Progress Bar -->
+                      <div class="media-progress-wrapper mb-2">
+                        <input type="range" id="audioProgress" class="media-progress-bar" min="0" max="100" value="0" step="0.1">
+                        <div class="d-flex justify-content-between">
+                          <span class="small text-muted" id="currentTime">0:00</span>
+                          <span class="small text-muted" id="totalTime">0:00</span>
+                        </div>
+                      </div>
+
+                      <!-- Playback Buttons -->
+                      <div class="d-flex justify-content-center align-items-center gap-3 mb-2">
+                        <button class="btn btn-sm btn-outline-secondary rounded-circle media-ctrl-btn" id="btnShuffle" title="Shuffle">
+                          <i class="fas fa-random"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary rounded-circle media-ctrl-btn" id="btnPrev" title="Previous">
+                          <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-primary rounded-circle media-play-btn" id="btnPlayPause" title="Play/Pause">
+                          <i class="fas fa-play" id="playIcon"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary rounded-circle media-ctrl-btn" id="btnNext" title="Next">
+                          <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary rounded-circle media-ctrl-btn" id="btnRepeat" title="Repeat">
+                          <i class="fas fa-redo"></i>
+                        </button>
+                      </div>
+
+                      <!-- Volume -->
+                      <div class="d-flex align-items-center justify-content-center gap-2">
+                        <i class="fas fa-volume-down text-muted"></i>
+                        <input type="range" id="volumeSlider" class="media-volume-slider" min="0" max="100" value="80">
+                        <i class="fas fa-volume-up text-muted"></i>
+                      </div>
+                    </div>
+
+                    <!-- Hidden audio element -->
+                    <audio id="audioPlayer" preload="auto"></audio>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Playlist / File Browser -->
+              <div class="col-12 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                  <div class="card-header bg-primary text-white border-0 rounded-top">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h6 class="mb-0 fw-bold"><i class="fas fa-list me-2"></i>Playlist</h6>
+                      <span class="badge bg-light text-primary">Local Media</span>
+                    </div>
+                  </div>
+
+                  <!-- Filter Tabs -->
+                  <div class="d-flex border-bottom">
+                    <button class="btn btn-sm flex-fill rounded-0 media-filter-btn active" data-filter="all">
+                      <i class="fas fa-th-list me-1"></i>All
+                    </button>
+                    <button class="btn btn-sm flex-fill rounded-0 media-filter-btn" data-filter="audio">
+                      <i class="fas fa-music me-1"></i>Music
+                    </button>
+                    <button class="btn btn-sm flex-fill rounded-0 media-filter-btn" data-filter="video">
+                      <i class="fas fa-video me-1"></i>Videos
+                    </button>
+                  </div>
+
+                  <!-- Playlist Items -->
+                  <div class="card-body p-0 media-playlist-body" id="playlistContainer">
+                    <div class="text-center py-5 text-muted d-none" id="emptyPlaylist">
+                      <i class="fas fa-folder-open fa-3x mb-3 d-block opacity-50"></i>
+                      <p class="mb-1">No media files found</p>
+                      <small>Add files to <strong>assets/media/</strong> and update PROJECT_MEDIA in script.js</small>
+                    </div>
+                    <ul class="list-group list-group-flush" id="playlistList"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Load external custom JS -->
+  <script src="script.js"></script>
+</body>
