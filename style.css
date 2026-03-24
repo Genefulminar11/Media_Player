@@ -29,6 +29,151 @@ main > section {
   flex: 1;
 }
 
+/* ===================== Dark Mode Toggle ===================== */
+.dark-mode-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 10;
+}
+
+.dark-mode-toggle input {
+  display: none;
+}
+
+.dark-mode-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 56px;
+  height: 28px;
+  background: #e9ecef;
+  border-radius: 50px;
+  padding: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.dark-mode-label i {
+  font-size: 0.75rem;
+  z-index: 1;
+}
+
+.dark-mode-label .fa-sun {
+  color: #f39c12;
+}
+
+.dark-mode-label .fa-moon {
+  color: #7c8a97;
+}
+
+.dark-mode-ball {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.dark-mode-toggle input:checked + .dark-mode-label {
+  background: #4a5568;
+}
+
+.dark-mode-toggle input:checked + .dark-mode-label .dark-mode-ball {
+  transform: translateX(28px);
+}
+
+.dark-mode-toggle input:checked + .dark-mode-label .fa-moon {
+  color: #f1c40f;
+}
+
+/* ===================== Dark Mode Theme ===================== */
+body.dark-mode {
+  background-color: #1a1a2e;
+}
+
+body.dark-mode main > section {
+  background-color: #16213e !important;
+  color: #e0e0e0;
+}
+
+body.dark-mode .text-primary {
+  color: #6ea8fe !important;
+}
+
+body.dark-mode .text-muted {
+  color: #a0a0a0 !important;
+}
+
+body.dark-mode .card {
+  background-color: #1a1a2e;
+  border-color: #2a2a4a;
+}
+
+body.dark-mode .card-header.bg-primary {
+  background-color: #1a3a6e !important;
+}
+
+body.dark-mode .media-player-card {
+  background: #1a1a2e;
+}
+
+body.dark-mode .media-playlist-item {
+  color: #e0e0e0;
+}
+
+body.dark-mode .media-playlist-item:hover {
+  background-color: rgba(110, 168, 254, 0.1);
+}
+
+body.dark-mode .media-playlist-item.active {
+  background-color: rgba(110, 168, 254, 0.15);
+}
+
+body.dark-mode .media-playlist-item .media-item-name {
+  color: #e0e0e0;
+}
+
+body.dark-mode .media-playlist-item .media-item-type {
+  color: #888;
+}
+
+body.dark-mode .media-filter-btn {
+  color: #a0a0a0;
+}
+
+body.dark-mode .media-filter-btn.active {
+  color: #6ea8fe;
+  border-bottom-color: #6ea8fe;
+}
+
+body.dark-mode .media-progress-bar {
+  background: #2a2a4a;
+}
+
+body.dark-mode .media-volume-slider {
+  background: #2a2a4a;
+}
+
+body.dark-mode .list-group-item {
+  background-color: transparent;
+  border-color: #2a2a4a;
+}
+
+body.dark-mode .border-bottom {
+  border-color: #2a2a4a !important;
+}
+
+body.dark-mode .badge.bg-light {
+  background-color: #2a2a4a !important;
+  color: #6ea8fe !important;
+}
+
 /* ===================== Media Player ===================== */
 .media-player-card {
   border-radius: 1rem;

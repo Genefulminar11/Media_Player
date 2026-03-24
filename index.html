@@ -20,8 +20,18 @@
     <!-- MAIN CONTENT AREA -->
     <main class="col-12 p-2 p-md-3 p-lg-3 d-flex flex-column">
       <!-- White container that holds all content sections -->
-      <section class="bg-white rounded-4 shadow-lg p-3 p-md-4 p-lg-5 d-flex flex-column justify-content-center align-items-center text-center">
+      <section class="bg-white rounded-4 shadow-lg p-3 p-md-4 p-lg-5 d-flex flex-column justify-content-start align-items-center text-center position-relative">
         
+        <!-- Dark Mode Toggle -->
+        <div class="dark-mode-toggle">
+          <input type="checkbox" id="darkModeSwitch">
+          <label for="darkModeSwitch" class="dark-mode-label">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <span class="dark-mode-ball"></span>
+          </label>
+        </div>
+
         <!-- ==================== MEDIA PLAYER SECTION ==================== -->
         <div id="others" class="section-content w-100">
           <div class="container-fluid p-4 p-md-5">

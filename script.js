@@ -3,7 +3,25 @@ console.log("Media Player loaded successfully!");
 // Initialize media player on page load
 document.addEventListener('DOMContentLoaded', function() {
   initMediaPlayer();
+  initDarkMode();
 });
+
+/* ===================== Dark Mode ===================== */
+function initDarkMode() {
+  const toggle = document.getElementById('darkModeSwitch');
+  if (!toggle) return;
+
+  // Restore saved preference
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    toggle.checked = true;
+  }
+
+  toggle.addEventListener('change', function() {
+    document.body.classList.toggle('dark-mode', this.checked);
+    localStorage.setItem('darkMode', this.checked);
+  });
+}
 
 /* ===================== Media Player ===================== */
 
