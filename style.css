@@ -29,6 +29,12 @@ main > section {
   flex: 1;
 }
 
+.main-section {
+  background-color: #fff;
+  color: #212529;
+  transition: background-color 0.3s, color 0.3s;
+}
+
 /* ===================== Dark Mode Toggle ===================== */
 .dark-mode-toggle {
   position: absolute;
@@ -97,8 +103,8 @@ body.dark-mode {
   background-color: #1a1a2e;
 }
 
-body.dark-mode main > section {
-  background-color: #16213e !important;
+body.dark-mode .main-section {
+  background-color: #16213e;
   color: #e0e0e0;
 }
 
